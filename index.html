@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Göhtta — Portfolio y Merch</title>
+<meta name="description" content="Portfolio de Göhtta, creador visual y musical. Conecta con sus proyectos, fechas y compra merchandising exclusivo." />
+<style>
+:root {
+  --bg:#0a0a0f;
+  --card:#111118;
+  --accent:#7c5cff;
+  --muted:#9aa4b2;
+  --radius:14px;
+  --maxw:1200px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family: 'Inter', sans-serif;
+  background:var(--bg);
+  color:#fff;
+  line-height:1.5;
+  overflow-x:hidden;
+  perspective:1000px;
+}
+a{color:var(--accent); text-decoration:none;}
+a:hover, a:focus{opacity:0.8; outline:none;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:24px;}
+header{
+  display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;z-index:10;position:relative;
+}
+.logo{
+  font-weight:800;font-size:28px;color:var(--accent);
+}
+nav a{
+  margin-left:16px;font-weight:600;
+}
+.cta{
+  padding:8px 14px;background:var(--accent);border-radius:10px;color:#0a0a0f;font-weight:700;
+}
+.hero{
+  position:relative;
+  border-radius:16px;
+  padding:60px;
+  margin-bottom:32px;
+  overflow:hidden;
+  height:500px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+.hero-bg{
+  position:absolute;
+  top:0;left:0;width:100%;height:100%;
+  background:radial-gradient(circle at 30% 30%, #7c5cff33, transparent 40%), radial-gradient(circle at 70% 70%, #00c2ff33, transparent 40%);
+  transition: transform 0.2s ease-out;
+  z-index:0;
+  filter:blur(60px);
+  will-change: transform; /* mejora rendimiento */
+}
+.hero-content{
+  position:relative;z-index:1;
+}
+.hero-content h1{
+  font-size:48px;line-height:1.2;margin-bottom:16px;
+  animation: floatText 6s ease-in-out infinite alternate;
+}
+@keyframes floatText{
+  0%{transform:translateY(0px);}
+  100%{transform:translateY(8px);}
+}
+.hero-content p{
+  color:var(--muted);margin-bottom:24px;
+}
+.hero .btn{
+  margin:0 8px;padding:12px 18px;border-radius:12px;font-weight:700;background:var(--accent);color:#0a0a0f;
+  display:inline-block;
+  cursor:pointer;
+  transition: background-color 0.3s ease;
+}
+.hero .btn:hover, .hero .btn:focus{
+  background-color:#6a4fff;
+  outline:none;
+}
+section{
+  margin-bottom:48px;
+  opacity:0;
+  transform:translateY(30px);
+  transition:all 0.8s ease-out;
+}
+section.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+h2{
+  font-size:32px;margin-bottom:16px;
+}
+.muted{
+  color:var(--muted);
+}
+.about{
+  display:flex;gap:24px;flex-wrap:wrap;justify-content:center;
+}
+.about p{
+  max-width:600px;
+}
+.socials{
+  display:flex;gap:16px;margin-top:12px;
+}
+.socials a{
+  padding:10px 14px;background:var(--card);border-radius:12px;font-weight:600;transition:all 0.3s;transform:translateZ(0);
+  display:inline-block;
+}
+.socials a:hover, .socials a:focus{
+  transform:scale(1.1) rotate(-2deg);
+  box-shadow:0 8px 20px rgba(124,92,255,0.4);
+  outline:none;
+}
+.agenda{
+  display:flex;flex-direction:column;gap:16px;align-items:center;
+}
+.agenda-item{
+  background:var(--card);padding:18px;border-radius:16px;display:flex;justify-content:space-between;align-items:center;transition:transform 0.3s, box-shadow 0.3s;cursor:default;
+  will-change: transform; /* mejora rendimiento */
+}
+.agenda-item:hover, .agenda-item:focus-within{
+  transform:translateY(-6px);
+  box-shadow:0 16px 32px rgba(124,92,255,0.3);
+  outline:none;
+}
+.products{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;justify-items:center;
+}
+.product{
+  background:var(--card);padding:20px;border-radius:16px;text-align:center;transition:transform 0.3s, box-shadow 0.3s;cursor:pointer;
+  will-change: transform; /* mejora rendimiento */
+}
+.product:hover, .product:focus-within{
+  transform:translateY(-10px) rotateX(3deg) rotateY(3deg);
+  box-shadow:0 20px 40px rgba(124,92,255,0.4);
+  outline:none;
+}
+.product img{
+  width:100%;border-radius:12px;margin-bottom:12px;
+}
+.product .btn{
+  margin-top:12px;
+  display:inline-block;
+  cursor:pointer;
+  padding:12px 18px;
+  border-radius:12px;
+  font-weight:700;
+  background:var(--accent);
+  color:#0a0a0f;
+  border:none;
+  text-decoration:none;
+  transition: background-color 0.3s ease;
+}
+.product .btn:hover, .product .btn:focus{
+  background-color:#6a4fff;
+  outline:none;
+}
+form{
+  background:var(--card);padding:28px;border-radius:16px;display:flex;flex-direction:column;gap:14px;
+}
+input,textarea{
+  padding:12px;border-radius:10px;border:1px solid #222;background:transparent;color:#fff;
+  font-size:1rem;
+}
+input:focus, textarea:focus{
+  border-color: var(--accent);
+  outline:none;
+  box-shadow: 0 0 8px var(--accent);
+}
+button{
+  padding:14px;background:var(--accent);color:#0a0a0f;font-weight:700;border:none;border-radius:12px;cursor:pointer;
+  font-size:1rem;
+  transition: background-color 0.3s ease;
+}
+button:hover, button:focus{
+  background-color:#6a4fff;
+  outline:none;
+}
+button:disabled{
+  opacity:0.6;cursor:not-allowed;
+}
+footer{
+  text-align:center;color:var(--muted);font-size:14px;margin-top:32px;
+}
+@media(max-width:768px){
+  .about{flex-direction:column;}
+  .hero-content h1{font-size:36px;}
+  .products{grid-template-columns:1fr;}
+  nav a {
+    margin-left: 8px;
+  }
+}
+
+/* Menú hamburguesa para móvil */
+@media(max-width:480px){
+  header {
+    flex-wrap: wrap;
+  }
+  nav {
+    width: 100%;
+    margin-top: 12px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  nav a {
+    margin: 8px 12px;
+  }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header role="banner">
+    <div class="logo" aria-label="Logo Göhtta">Göhtta</div>
+    <nav role="navigation" aria-label="Menú principal">
+      <a href="#about" tabindex="0">Sobre mí</a>
+      <a href="#agenda" tabindex="0">Fechas</a>
+      <a href="#merch" tabindex="0">Merch</a>
+      <a href="#contact" class="cta" tabindex="0">Contacto</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero visible" aria-label="Sección principal de bienvenida">
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero-content">
+        <h1>Göhtta — Creatividad y estilo propio</h1>
+        <p>Muestro mi trabajo, conecto con mis fans y vendo productos exclusivos.</p>
+        <a href="#merch" class="btn" role="button" tabindex="0">Ver Merch</a>
+        <a href="#contact" class="btn" role="button" tabindex="0">Contacto</a>
+      </div>
+    </section>
+
+    <section id="about" aria-labelledby="about-title">
+      <h2 id="about-title">Lo que hago</h2>
+      <div class="about">
+        <p>Soy Göhtta, un creador con pasión por el arte visual, la música y la cultura urbana. Comparto mis proyectos, colaboraciones y todo lo que creo con estilo único.</p>
+        <div class="socials" role="list" aria-label="Redes sociales de Göhtta">
+          <a href="#" target="_blank" rel="noopener" role="listitem" aria-label="Instagram de Göhtta" tabindex="0">Instagram</a>
+          <a href="#" target="_blank" rel="noopener" role="listitem" aria-label="TikTok de Göhtta" tabindex="0">TikTok</a>
+          <a href="#" target="_blank" rel="noopener" role="listitem" aria-label="YouTube de Göhtta" tabindex="0">YouTube</a>
+          <a href="#" target="_blank" rel="noopener" role="listitem" aria-label="Twitter de Göhtta" tabindex="0">Twitter</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="agenda" aria-labelledby="agenda-title">
+      <h2 id="agenda-title">Fechas disponibles</h2>
+      <div class="agenda" role="list">
+        <div class="agenda-item" role="listitem" tabindex="0">
+          <span>05/10/2025</span>
+          <span>Evento en Buenos Aires</span>
+        </div>
+        <div class="agenda-item" role="listitem" tabindex="0">
+          <span>18/10/2025</span>
+          <span>Show online</span>
+        </div>
+        <div class="agenda-item" role="listitem" tabindex="0">
+          <span>01/11/2025</span>
+          <span>Exposición artística</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="merch" aria-labelledby="merch-title">
+      <h2 id="merch-title">Merchandising</h2>
+      <div class="products" role="list">
+        <article class="product" role="listitem" tabindex="0" aria-label="Gorra Göhtta, precio 25 dólares">
+          <img src="https://via.placeholder.com/220x220.webp?text=Producto+1" alt="Gorra Göhtta negra con logo morado" loading="lazy" />
+          <h3>Gorra Göhtta</h3>
+          <p>$25 USD</p>
+          <a href="https://www.paypal.com" class="btn" role="button" tabindex="0" aria-label="Comprar Gorra Göhtta por 25 dólares">Comprar</a>
+        </article>
+        <article class="product" role="listitem" tabindex="0" aria-label="Camiseta Göhtta, precio 40 dólares">
+          <img src="https://via.placeholder.com/220x220.webp?text=Producto+2" alt="Camiseta Göhtta blanca con diseño morado" loading="lazy" />
+          <h3>Camiseta Göhtta</h3>
+          <p>$40 USD</p>
+          <a href="https://www.paypal.com" class="btn" role="button" tabindex="0" aria-label="Comprar Camiseta Göhtta por 40 dólares">Comprar</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contacto</h2>
+      <form id="contactForm" action="https://formspree.io/f/your-form-id" method="POST" aria-describedby="privacy-note" novalidate>
+        <label for="name">Nombre</label>
+        <input type="text" id="name" name="name" placeholder="Nombre" required aria-required="true" />
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Email" required aria-required="true" />
+        <label for="message">Tu mensaje</label>
+        <textarea id="message" name="message" rows="5" placeholder="Tu mensaje" required aria-required="true"></textarea>
+        <button type="submit">Enviar</button>
+        <div class="muted" id="privacy-note" style="font-size:13px;">No compartimos tus datos.</div>
+      </form>
+      <div style="margin-top:20px; text-align:center; font-size:16px;">
+        <p>📞 <a href="https://wa.me/5492241549646" target="_blank" rel="noopener" tabindex="0">+54 9 2241 549646</a></p>
+        <p>✉️ <a href="mailto:gohtta.visuales@gmail.com" tabindex="0">gohtta.visuales@gmail.com</a></p>
+      </div>
+    </section>
+  </main>
+
+  <footer role="contentinfo">
+    © <span id="year"></span> Göhtta. Todos los derechos reservados.
+  </footer>
+</div>
+
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Fade-up sections
+const sections = document.querySelectorAll('section');
+const observer = new IntersectionObserver(entries=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){entry.target.classList.add('visible');}
+  });
+},{threshold:0.2});
+sections.forEach(sec=>observer.observe(sec));
+
+// Hero parallax
+const heroBg = document.getElementById('heroBg');
+document.addEventListener('mousemove', e=>{
+  const x = (e.clientX / window.innerWidth - 0.5) * 40;
+  const y = (e.clientY / window.innerHeight - 0.5) * 40;
+  heroBg.style.transform = `translate(${x}px,${y}px)`;
+});
+
+// Floating cards
+const floatCards = document.querySelectorAll('.product, .agenda-item');
+floatCards.forEach(card=>{
+  card.addEventListener('mousemove', e=>{
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left - rect.width/2)/10;
+    const y = (e.clientY - rect.top - rect.height/2)/10;
+    card.style.transform = `translate(${x}px,${y}px) rotateX(${y}deg) rotateY(${-x}deg)`;
+  });
+  card.addEventListener('mouseleave', ()=>{card.style.transform='translate(0,0) rotateX(0) rotateY(0)';});
+  card.addEventListener('focusout', ()=>{card.style.transform='translate(0,0) rotateX(0) rotateY(0)';});
+});
+
+// Contact form with validation and better UX
+const form = document.getElementById('contactForm');
+form.addEventListener('submit', function(e){
+  e.preventDefault();
+  // Validación simple extra
+  if(!form.checkValidity()){
+    alert('Por favor completa todos los campos correctamente.');
+    return;
+  }
+  const btn = form.querySelector('button');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
+  fetch(form.action,{
+    method:'POST',
+    body: new FormData(form),
+    headers:{'Accept':'application/json'}
+  }).then(res=>{
+    if(res.ok){
+      alert('Mensaje enviado!');
+      form.reset();
+    } else {
+      alert('Error al enviar el mensaje.');
+    }
+  }).catch(err=>{
+    alert('Error de red.');
+  }).finally(()=>{
+    btn.disabled=false;
+    btn.textContent='Enviar';
+  });
+});
+</script>
+</body>
+</html>
